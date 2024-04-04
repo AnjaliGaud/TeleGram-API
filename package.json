@@ -1,0 +1,16 @@
+{
+  "name": "tele_earn_v1.0",
+  "version": "1.0.0",
+  "description": "\"TeleGram Automation Script\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.2.3"
+  }
+}
