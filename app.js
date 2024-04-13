@@ -1,5 +1,7 @@
 const express = require("express");
 
+const AppError = require("./utils/appError");
+const globalErrorHandler = require("./controllers/errorController");
 const messageRouter = require("./routers/messageRoutes");
 const chatRouter = require("./routers/chatRoutes");
 
@@ -15,6 +17,19 @@ app.get("/ping", (req, res) => {
 // ==== Mounting Routers ====
 app.use("/api/v1/message", messageRouter);
 app.use("/api/v1/chat", chatRouter);
+
+// ==== UnHandled Routes ====
+app.all("*", (req, res, next) => {
+  next(
+    new AppError(
+      `Can't find ${req.originalUrl} on this server. Jessan. 😎😎😎`,
+      404
+    )
+  );
+});
+
+// ==== Global Express Error Handler ====
+app.use(globalErrorHandler);
 
 app.startServer = async () => {
   try {
