@@ -32,6 +32,18 @@ exports.createChat = async (req, res, next) => {
   }
 };
 
+exports.deleteAllChats = async (req, res, next) => {
+  try {
+    const deletedChats = await Chat.deleteMany();
+    if (!deletedChats) {
+      return res.status(404).json({ message: "Chats not found" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Error deleting chats" });
+  }
+  res.status(200).json({ message: "Chats deleted successfully" });
+};
+
 exports.getChatById = async (req, res, next) => {
   const id = req.params.id;
   try {
