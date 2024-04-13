@@ -7,7 +7,8 @@ const router = express.Router();
 router
   .route("/")
   .get(chatControllers.getAllChats)
-  .post(chatControllers.createChat);
+  .post(chatControllers.createChat)
+  .delete(chatControllers.deleteAllChats);
 
 router
   .route("/:id")

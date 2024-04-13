@@ -14,11 +14,11 @@ exports.createMessage = async (req, res, next) => {
     dataPeerId: req.body.dataPeerId,
     dataTimestamp: req.body.dataTimestamp,
     image: req.body.image,
-    links: req.body.links,
+    linksArray: req.body.linksArray,
     scrapedFromUserName: req.body.scrapedFromUserName,
     scrapedFromChat: req.body.scrapedFromChat,
     isLinkConverted: req.body.isLinkConverted,
-    convertedLink: req.body.convertedLink,
+    convertedLinksArray: req.body.convertedLinksArray,
     uploadedTo: req.body.uploadedTo,
     isLastInScraping: req.body.isLastInScraping,
   };
@@ -30,11 +30,25 @@ exports.createMessage = async (req, res, next) => {
       createdMessage,
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json({
-      message: "Error creating chat",
-      error: err.message,
+      message: "Error creating chat1",
+      // error: err.message,
+      error: err,
     });
   }
+};
+
+exports.deleteAllMessages = async (req, res, next) => {
+  try {
+    const deletedMessages = await Message.deleteMany();
+    if (!deletedMessages) {
+      return res.status(404).json({ message: "Messages not found" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Error deleting messages" });
+  }
+  res.status(200).json({ message: "Messages deleted successfully" });
 };
 
 exports.getMessageById = async (req, res, next) => {

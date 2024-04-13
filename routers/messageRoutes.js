@@ -7,7 +7,8 @@ const router = express.Router();
 router
   .route("/")
   .get(messageControllers.getAllMessages)
-  .post(messageControllers.createMessage);
+  .post(messageControllers.createMessage)
+  .delete(messageControllers.deleteAllMessages);
 
 router
   .route("/:id")
