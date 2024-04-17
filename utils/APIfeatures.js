@@ -4,9 +4,17 @@ class APIfeatures {
     this.queryStr = queryStr;
   }
   filter() {
-    let queryStr = { ...this.queryStr };
-    ["sort", "page", "limit", "fields"].forEach((el) => delete queryStr[el]);
-    this.query.find(queryStr);
+    let queryObj = { ...this.queryStr };
+    ["sort", "page", "limit", "fields"].forEach((el) => delete queryObj[el]);
+
+    // 1B) Advanced filtering
+    let queryString = JSON.stringify(queryObj);
+    queryString = queryString.replace(
+      /\b(gte|gt|lte|lt|exists)\b/g,
+      (match) => `$${match}`
+    );
+
+    this.query.find(JSON.parse(queryString));
     return this;
   }
   sort() {
