@@ -96,3 +96,10 @@ exports.deleteMessageById = async (req, res, next) => {
   }
   res.status(200).json({ message: "Message deleted successfully" });
 };
+
+exports.getMsgsToConvert = async (req, res, next) => {
+  req.query.isLinkConverted = { exists: "false" };
+  req.query.limit = 50;
+  req.query.sort = "-createdAt";
+  next();
+};

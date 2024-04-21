@@ -5,6 +5,10 @@ const messageControllers = require("../controllers/messageControllers");
 const router = express.Router();
 
 router
+  .route("/msgs-to-convert")
+  .get(messageControllers.getMsgsToConvert, messageControllers.getAllMessages);
+
+router
   .route("/")
   .get(messageControllers.getAllMessages)
   .post(messageControllers.createMessage)
