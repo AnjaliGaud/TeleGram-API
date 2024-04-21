@@ -4,6 +4,7 @@ const catchAsync = require("../utils/catchAsync");
 
 exports.getAllMessages = catchAsync(async (req, res, next) => {
   const query = Message.find({});
+  console.log(req.query);
   new APIfeatures(query, req.query).filter().sort().fields().page();
   const data = await query;
   res.status(200).json({ status: "success", results: data.length, data });
@@ -71,4 +72,11 @@ exports.deleteMessageById = catchAsync(async (req, res, next) => {
     return res.status(404).json({ message: "Message not found" });
   }
   res.status(200).json({ message: "Message deleted successfully" });
+});
+
+exports.getMsgsToConvert = catchAsync(async (req, res, next) => {
+  req.query.isLinkConverted = { exists: "false" };
+  req.query.limit = 50;
+  req.query.sort = "-createdAt";
+  next();
 });
