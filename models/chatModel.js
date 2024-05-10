@@ -5,6 +5,7 @@ const chatSchema = new mongoose.Schema(
     members: { type: Number }, // if type is Group
     subscribers: { type: Number }, // if type is Channel
     userName: { type: String, unique: true, trim: true, required: true }, // userName is part of URL of Chat after #
+    userTittle: { type: String, trim: true },
     name: { type: String, unique: true, trim: true }, // Name of bot
     privacy: { type: String, enum: ["public", "private"] },
     messages: [{ type: mongoose.Schema.Types.ObjectId, ref: "Message" }],

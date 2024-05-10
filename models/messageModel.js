@@ -27,6 +27,7 @@ const messageSchema = new mongoose.Schema(
       default: undefined, // Default value for the field (undefined means not defined)
     },
     scrapedFromUserName: { type: String, trim: true }, // on the basis of this you link this to Chat
+    scrapedFromUserTittle: { type: String, trim: true },
     scrapedFromChat: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Chat",

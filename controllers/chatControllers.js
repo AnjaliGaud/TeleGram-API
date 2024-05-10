@@ -14,6 +14,7 @@ exports.createChat = async (req, res, next) => {
     members: req.body.members,
     subscribers: req.body.subscribers,
     userName: req.body.userName,
+    userTittle: req.body.userTittle,
     name: req.body.name,
     privacy: req.body.privacy,
   };

@@ -11,12 +11,13 @@ exports.getAllMessages = async (req, res, next) => {
 exports.createMessage = async (req, res, next) => {
   const newMessage = {
     dataMid: req.body.dataMid,
-    dataPeerId: req.body.dataPeerId,
-    dataTimestamp: req.body.dataTimestamp,
+    dataPeerId: req.body.dataPeerId, // Related to ChatID
+    dataTimestamp: req.body.dataTimestamp, // Time of Upload
     image: req.body.image,
     linksArray: req.body.linksArray,
     scrapedFromUserName: req.body.scrapedFromUserName,
     scrapedFromChat: req.body.scrapedFromChat,
+    scrapedFromUserTittle: req.body.scrapedFromUserTittle,
     isLinkConverted: req.body.isLinkConverted,
     convertedLinksArray: req.body.convertedLinksArray,
     uploadedTo: req.body.uploadedTo,
