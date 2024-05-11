@@ -9,6 +9,12 @@ const messageSchema = new mongoose.Schema(
       sparse: true, // Allow null or undefined values
       unique: true, // This should only be set on one document per dataMid
     },
+    dataPeerId: {
+      type: Number,
+    },
+    dataTimestamp: {
+      type: Date,
+    },
     category: {
       type: String,
       enum: ["desi", "english", "webseries"],
