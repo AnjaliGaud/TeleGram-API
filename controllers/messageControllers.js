@@ -33,7 +33,7 @@ exports.createMessage = async (req, res, next) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: "Error creating chat1",
+      message: `${err.message}`,
       // error: err.message,
       error: err,
     });
