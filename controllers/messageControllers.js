@@ -14,6 +14,7 @@ exports.createMessage = async (req, res, next) => {
     dataPeerId: req.body.dataPeerId, // Related to ChatID
     dataTimestamp: req.body.dataTimestamp, // Time of Upload
     image: req.body.image,
+    driveFileId: req.body.driveFileId,
     linksArray: req.body.linksArray,
     scrapedFromUserName: req.body.scrapedFromUserName,
     scrapedFromChat: req.body.scrapedFromChat,

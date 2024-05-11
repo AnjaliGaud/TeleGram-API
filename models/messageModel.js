@@ -20,6 +20,7 @@ const messageSchema = new mongoose.Schema(
       enum: ["desi", "english", "webseries"],
     },
     image: { type: String, unique: true, trim: true, required: true },
+    driveFileId: { type: String, trim: true },
     linksArray: {
       type: [String],
       unique: true,
