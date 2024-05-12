@@ -4,7 +4,7 @@
   "description": "\"TeleGram Automation Script\"",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
