@@ -9,7 +9,7 @@ const chatSchema = new mongoose.Schema(
     dataPeerId: { type: Number },
     privacy: { type: String, enum: ["public", "private"] },
     messages: [{ type: mongoose.Schema.Types.ObjectId, ref: "Message" }],
-    dataMidsScraped: [{ type: Number, default: [0, 1], maxItems: 2 }],
+    dataMidsScraped: { type: [Number] },
     lastDateOfScraping: { type: Date },
   },
   { timestamps: true }

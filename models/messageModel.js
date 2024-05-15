@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+mongoose = require("mongoose");
 const Chat = require("../models/chatModel");
 
 const messageSchema = new mongoose.Schema(
@@ -62,23 +62,26 @@ messageSchema.pre("save", async function (next) {
 messageSchema.post("save", async function (doc, next) {
   if (!doc.scrapedFromChat) next(); // error-case
   // 1. 1st method to update chat.
-  // const updateObj = {
-  //   $addToSet: { messages: doc._id },
-  //   $set: { lastDateOfScraping: doc.createdAt },
-  // };
-  // await Chat.findByIdAndUpdate(doc.scrapedFromChat, updateObj);
+  const updateObj = {
+    $addToSet: {
+      messages: doc._id,
+      dataMidsScraped: doc.dataMid,
+    },
+    $set: { lastDateOfScraping: doc.createdAt },
+  };
+  await Chat.findByIdAndUpdate(doc.scrapedFromChat, updateObj);
+  // git commit -m "2nd method to update chat is not compatible with scraper hence using 1st method"
 
   // 2. 2nd method to update chat.
-  const chat = await Chat.findById(doc.scrapedFromChat);
-  if (!chat) next(); // error-case
-  if (!chat?.dataMidsScraped[0] || doc.dataMid < chat.dataMidsScraped[0])
-    chat.dataMidsScraped[0] = doc.dataMid;
-  else if (!chat?.dataMidsScraped[1] || doc.dataMid > chat.dataMidsScraped[1])
-    chat.dataMidsScraped[1] = doc.dataMid;
-
-  chat.lastDateOfScraping = doc.createdAt;
-  chat.messages.push(doc._id);
-  await chat.save();
+  // const chat = await Chat.findById(doc.scrapedFromChat);
+  // if (!chat) next(); // error-case
+  // if (!chat?.dataMidsScraped[0] || doc.dataMid < chat.dataMidsScraped[0])
+  //   chat.dataMidsScraped[0] = doc.dataMid;
+  // else if (!chat?.dataMidsScraped[1] || doc.dataMid > chat.dataMidsScraped[1])
+  //   chat.dataMidsScraped[1] = doc.dataMid;
+  // chat.lastDateOfScraping = doc.createdAt;
+  // chat.messages.push(doc._id);
+  // await chat.save();
 
   next();
 });
