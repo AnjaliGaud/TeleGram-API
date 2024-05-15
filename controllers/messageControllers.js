@@ -4,7 +4,6 @@ const catchAsync = require("../utils/catchAsync");
 
 exports.getAllMessages = catchAsync(async (req, res, next) => {
   const query = Message.find({});
-  console.log(req.query);
   new APIfeatures(query, req.query).filter().sort().fields().page();
   const data = await query;
   res.status(200).json({ status: "success", results: data.length, data });
